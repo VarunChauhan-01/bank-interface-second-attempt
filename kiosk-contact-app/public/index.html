@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang= en>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content=width=device-width initial-scale=1>
+  <title>AI Self-Service Prototype</title>
+  <link rel=stylesheet href=style.css>
+</head>
+<body>
+  <header class=banner>
+    <div>
+      <p class=pill>Gen-AI + Conversational AI platform</p>
+      <h1>Smart Branch & Contact Center Experience</h1>
+      <p class=subtitle>Voice-first kiosk, multilingual guidance, secure auth, and automated IVR context handoff.</p>
+    </div>
+    <div class=meta>
+      <label for=language-select>Language</label>
+      <select id=language-select aria-label=Choose language>
+        <option value=en>English</option>
+        <option value=hi>Hindi</option>
+        <option value=te>Telugu</option>
+      </select>
+    </div>
+  </header>
+
+  <main class=layout>
+    <section class=card id=kiosk-panel aria-label=Branch kiosk interface>
+      <div class=card-head>
+        <h2>Branch Kiosk</h2>
+        <button id=mic-btn aria-pressed=false>🎙 Start voice input</button>
+      </div>
+      <div class=status-bar>
+        <span id=auth-status>Not authenticated</span>
+        <span id=voice-hint>Tap Record or choose a quick task.</span>
+      </div>
+      <form id=auth-form aria-label=Secure authentication>
+        <label>
+          Customer ID
+          <input type=text name=customerId value=C1001 required>
+        </label>
+        <label>
+          Method
+          <select name=method>
+            <option value=otp>OTP</option>
+            <option value=biometric>Biometric</option>
+          </select>
+        </label>
+        <label>
+          Token (otp=123456)
+          <input type=text name=token placeholder=123456>
+        </label>
+        <button type=submit>Authenticate</button>
+      </form>
+      <div class=quick-actions id=quick-actions role=group aria-label=Common kiosk intents></div>
+      <div class=conversation id=conversation aria-live=polite></div>
+      <div class=transaction id=transaction-confirm hidden>
+        <p id=transaction-text></p>
+        <button id=confirm-transfer>Confirm transfer</button>
+      </div>
+    </section>
+
+    <section class=card id=contact-panel aria-label=Contact center voice bot>
+      <div class=card-head>
+        <h2>Contact Center Voice Bot</h2>
+        <button id=call-btn>Simulate routine call</button>
+      </div>
+      <div class=call-log id=call-log></div>
+      <div class=escalation id=escalation>
+        <h3>Escalate to human agent</h3>
+        <form id=escalate-form>
+          <label>
+            Issue summary
+            <input type=text name=issue placeholder=Customer wants new card>
+          </label>
+          <button type=submit>Escalate</button>
+        </form>
+        <div id=escalation-result aria-live=assertive></div>
+      </div>
+      <div class=health>
+        <p>Core banking ledger events (last 10)</p>
+        <ul id=ledger></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class=footer>
+    <p>Supports accessibility (high contrast, keyboard-first) and multilanguage guidance. Content is mock data for a prototype.</p>
+  </footer>
+
+  <script src=app.js></script>
+</body>
+</html>
